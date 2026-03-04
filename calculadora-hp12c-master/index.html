@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Emulador Web HP-12C</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+    <link rel="shortcut icon" href="arquivos/favcon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/hp12c.js"></script>
+</head>
+<body>
+
+<div class="calc-wrapper">
+    
+    <div id="pointer_div" style="position: relative; height: 282px; width: 450px; margin: 0 auto;">
+
+        <img src="arquivos/hp12c.jpg" id="cross" onclick="key_pressed(event)" alt="" />
+        
+        <div style="z-index: 1; position: absolute; left: 87px; top: 24px; font-weight: bold; font-size: 16px; font-family: sans-serif;">
+            <span id="display"></span>
+        </div>
+        <div style="z-index: 1; position: absolute; left: 90px; top: 55px; font-size: 9px; font-family: sans-serif;">
+            <span id="modifier"></span>
+        </div>
+        <div style="z-index: 1; position: absolute; left: 193px; top: 55px; font-size: 9px; font-family: sans-serif;">
+            <span id="begin"></span>
+        </div>
+        <div style="z-index: 1; position: absolute; left: 231px; top: 55px; font-size: 9px; font-family: sans-serif;">
+            <span id="dmyc"></span>
+        </div>
+        <div style="z-index: 1; position: absolute; left: 141px; top: 55px; font-size: 9px; font-family: sans-serif;">
+            <span id="pgrm"></span>
+        </div>
+
+        <img id="lcd0a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 89px;" />
+        <img id="lcd0e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 89px;" />
+        <img id="lcd0t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 89px;" />
+
+        <img id="lcd1a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 107px;" />
+        <img id="lcd1b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 107px;" />
+        <img id="lcd1c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 107px;" />
+        <img id="lcd1d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 107px;" />
+        <img id="lcd1e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 107px;" />
+        <img id="lcd1f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 107px;" />
+        <img id="lcd1g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 107px;" />
+        <img id="lcd1p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 107px;" />
+        <img id="lcd1t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 107px;" />
+
+        <img id="lcd2a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 125px;" />
+        <img id="lcd2b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 125px;" />
+        <img id="lcd2c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 125px;" />
+        <img id="lcd2d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 125px;" />
+        <img id="lcd2e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 125px;" />
+        <img id="lcd2f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 125px;" />
+        <img id="lcd2g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: visible; left: 125px;" />
+        <img id="lcd2p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 125px;" />
+        <img id="lcd2t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 125px;" />
+
+        <img id="lcd3a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+        <img id="lcd3t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 143px;" />
+
+        <img id="lcd4a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+        <img id="lcd4t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 161px;" />
+
+        <img id="lcd5a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+        <img id="lcd5t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 179px;" />
+
+        <img id="lcd6a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+        <img id="lcd6t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 197px;" />
+
+        <img id="lcd7a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+        <img id="lcd7t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 215px;" />
+
+        <img id="lcd8a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+        <img id="lcd8t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 233px;" />
+
+        <img id="lcd9a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+        <img id="lcd9t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 251px;" />
+
+        <img id="lcd10a" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWBAMAAAA/cdFyAAAABGdBTUEAALGPC/xhBQAAADBQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWj8cCwAAAA90Uk5TAAEDBAgXTU5PU7PFys3xbmRRDgAAACFJREFUCNdjYFr/7t37owwgwPv//28BARCLZXp6M8OQBwBKSAjtaMAF2gAAAABJRU5ErkJggg==" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10b" src="arquivos/lcdb.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10c" src="arquivos/lcdc.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10d" src="arquivos/lcdd.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10e" src="arquivos/lcde.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10f" src="arquivos/lcdf.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10g" src="arquivos/lcdg.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10p" src="arquivos/lcdp.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+        <img id="lcd10t" src="arquivos/lcdt.png" alt="" style="z-index: 1; position: absolute; top: 30px; visibility: hidden; left: 269px;" />
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Inicializa a calculadora assim que o HTML carregar
+    window.addEventListener('DOMContentLoaded', function() {
+        if (typeof Init_hp12c === 'function') {
+            Init_hp12c();
+        }
+    });
+</script>
+
+</body>
+</html>

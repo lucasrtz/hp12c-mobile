@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+/* Zerar margens da página */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Página */
+body {
+    background-color: #333333;
+    /* Flexbox moderno para centralizar a calculadora vertical e horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa 100% da altura da tela do dispositivo */
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+/* O wrapper que criamos no HTML */
+.calc-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* A calculadora em si */
+div#pointer_div {
+    position: relative;
+    width: 450px;
+    height: 282px;
+}
+
+/* ===========================================
+  MÁGICA DA RESPONSIVIDADE (MEDIA QUERIES)
+  ===========================================
+*/
+
+/* Para celulares grandes (como iPhone 14 Pro - largura 393px) e médios */
+@media (max-width: 480px) {
+    div#pointer_div {
+        /* Encolhe a calculadora inteira (imagem de fundo + números) em 85% */
+        transform: scale(0.85); 
+        transform-origin: center center;
+    }
+}
+
+/* Para celulares menores (como o iPhone SE - largura 320px) */
+@media (max-width: 380px) {
+    div#pointer_div {
+        /* Encolhe a calculadora para 70% do tamanho original */
+        transform: scale(0.70);
+    }
+}
