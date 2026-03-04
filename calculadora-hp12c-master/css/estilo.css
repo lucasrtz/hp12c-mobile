@@ -53,4 +53,23 @@ div#pointer_div {
         /* Encolhe a calculadora para 70% do tamanho original */
         transform: scale(0.70);
     }
+/* ===========================================
+   RESPONSIVIDADE PARA CELULAR DEITADO (LANDSCAPE)
+   ===========================================
+*/
+/* Se a altura da tela for muito pequena (celular deitado) */
+@media (max-height: 400px) {
+    div#pointer_div {
+        transform: scale(0.80); /* Encolhe um pouco para não cortar em cima e embaixo */
+        transform-origin: center center;
+    }
+}
+
+/* Para telas extremamente "baixas" */
+@media (max-height: 320px) {
+    div#pointer_div {
+        transform: scale(0.65);
+    }
+}
+
 }
